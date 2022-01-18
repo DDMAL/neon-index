@@ -125,5 +125,8 @@
       }
     }
   },
-  "defaultProject": "neon-index"
+  "defaultProject": "neon-index",
+  "cli": {
+    "analytics": false
+  }
 }

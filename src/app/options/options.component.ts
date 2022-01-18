@@ -20,6 +20,11 @@ export class OptionsComponent implements OnInit {
   pageOrManuscript: string = '';
   pageOrManifest: string = '';
   pageSelect: string = '';
+  loading = false;
+
+  Load(): void {
+    this.loading = true;
+  }
 
   formGroup1 = new FormGroup({
     selectOrUpload: new FormControl(this.selectOrUpload,
