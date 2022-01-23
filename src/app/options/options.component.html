@@ -84,7 +84,7 @@
         </div>
         <div>
           <button mat-raised-button matStepperPrevious type="button">Previous</button>
-          <button mat-raised-button [disabled]="!formGroup3_3.valid" type="submit">Submit</button>
+          <button mat-raised-button type="submit" [class.spinner]="loading" [disabled]="!formGroup3_3.valid && loading" (click)="Load()">Submit</button>
         </div>
       </form>
 
@@ -98,7 +98,7 @@
         </div>
         <div>
           <button mat-raised-button matStepperPrevious type="button">Previous</button>
-          <button mat-raised-button [disabled]="!formGroup3_4.valid" type="submit">Submit</button>
+          <button mat-raised-button type="submit" [class.spinner]="loading" [disabled]="!formGroup3_4.valid && loading" (click)="Load()">Submit</button>
         </div>
       </form>
 
