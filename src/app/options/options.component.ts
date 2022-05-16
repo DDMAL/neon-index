@@ -20,6 +20,8 @@ export class OptionsComponent implements OnInit {
   pageOrManuscript: string = '';
   pageOrManifest: string = '';
   pageSelect: string = '';
+  submitLoading = false;
+  deleteLoading = false;
 
   formGroup1 = new FormGroup({
     selectOrUpload: new FormControl(this.selectOrUpload,
@@ -86,23 +88,30 @@ export class OptionsComponent implements OnInit {
     });
   }
 
-  handleSubmit(e) {
+  handleSubmit(e: string) {
     console.debug("Submit");
     console.debug(e);
+
     let params;
+    let selection;
+
     switch (e) {
       case "formGroup3_1":
+        this.submitLoading = true;
         let value = this.formGroup3_1.controls.pageSelect.value;
         params = makeParams({ manifest: value });
         window.location.href = "./editor.html?" + params;
         break;
-      case "formGroup3_2":
+      case "formGroup3_2":        
+        this.submitLoading = true;
         params = makeParams({
           manifest: this.formGroup3_2.controls.manuscriptSelect.value
         });
         window.location.href = "./editor.html?" + params;
         break;
+      // Upload page
       case "formGroup3_3":
+        this.submitLoading = true;
         let mei: File = (document.getElementById("meiUpload") as HTMLInputElement).files[0];
         let bg: File = (document.getElementById("bgUpload") as HTMLInputElement).files[0];
         createManifest(mei, bg).then(manifest => {
@@ -114,7 +123,9 @@ export class OptionsComponent implements OnInit {
           console.error(err);
         });
         break;
+      // Upload manuscript
       case "formGroup3_4":
+        this.submitLoading = true;
         let manifest: File = (document.getElementById("manifestUpload") as HTMLInputElement).files[0];
         addEntry(manifest.name, manifest, false).then(_ => {
           window.location.reload();
@@ -122,11 +133,50 @@ export class OptionsComponent implements OnInit {
           console.error(err);
         });
         break;
+      // Load user-provided page
       case "formGroup3_5":
-      case "formGroup3_6":
-        let selection = this[e].controls.selection.value;
+        this.submitLoading = true;
+        selection = this['formGroup3_5'].controls.selection.value;
+        console.log(selection);
         params = makeParams({ storage: selection });
-        window.location.href = "./editor.html?" + params;
+        window.location.href = `./editor.html?${params}`;
+        break;
+        // Load user-provided manuscript
+      case "formGroup3_6":
+        this.submitLoading = true;
+        selection = this['formGroup3_6'].controls.selection.value;
+        params = makeParams({ storage: selection });
+        window.location.href = `./editor.html?${params}`;
+        // Delete Page
+      case "deleteDocument3_5":
+        this.deleteLoading = true;
+        selection = this['formGroup3_5'].controls.selection.value;
+        console.log(selection);
+        if (typeof selection !== 'undefined' || selection !== null) {
+          deleteEntry(selection).then( _ => {
+            window.location.reload();
+          }).catch(err => {
+            console.error(err);
+          });
+        }
+        else {
+          window.confirm(`${selection} could not be deleted! Continue to reload page.`);
+        }
+        break;
+        // Delete Manuscript
+      case "deleteDocument3_6":
+        this.deleteLoading = true;
+        selection = this['formGroup3_6'].controls.selection.value;
+        if (typeof selection !== 'undefined' || selection !== null) {
+          deleteEntry(selection).then( _ => {
+            window.location.reload();
+          }).catch(err => {
+            console.error(err);
+          });
+        }
+        else {
+          window.confirm(`${selection} could not be deleted! Continue to reload page.`);
+        }
         break;
       default:
         console.error("Unexpected ID: " + e);
