@@ -9,10 +9,16 @@ git clone https://github.com/DDMAL/neon-index.git
 cd neon-index
 ```
 
+Install npm
+
+```
+npm install
+```
+
 Install Angular CLI:
 
 ```
-npm install -g @angular/cli` 
+npm install -g @angular/cli
 ```
 (or `sudo npm install -g @angular/cli` for MacOS/Linux users)
 
