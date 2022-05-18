@@ -67,6 +67,9 @@ export function addEntry(title: string, content: Blob, single: boolean): Promise
       resolve(true);
     }).catch(err => {
       reject(err);
+      console.log(err);
+      window.confirm('Upload unsuccessful. See console log for error message or continue to reload');
+      window.location.reload();
     });
   });
 }

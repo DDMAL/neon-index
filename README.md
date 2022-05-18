@@ -1,6 +1,47 @@
-# NeonIndex
+# Neon Index
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.23.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.23. (Migrated to Angular 10)
+
+## Getting Started
+Start by cloning the repository:
+```
+git clone https://github.com/DDMAL/neon-index.git
+cd neon-index
+```
+
+Install npm
+
+```
+npm install
+```
+
+Install Angular CLI:
+
+```
+npm install -g @angular/cli
+```
+(or `sudo npm install -g @angular/cli` for MacOS/Linux users)
+
+
+Run `ng v` to verify that Angular CLI is working properly. 
+
+Versions information should display, verify that these match:
+```
+Angular CLI: 13.3.5
+Node: >=10.
+npm: >=8.
+Angular: 10.0.9
+```
+
+If problems arise:
+```
+npm uninstall -g @angular/cli
+npm cache verify
+npm install -g @angular/cli@x.x.x
+```
+Where `x.x.x.` is the version number. 
+
+If you need to change versions of Node or npm, use NVM ([Node Version Manager](https://github.com/nvm-sh/nvm)).
 
 ## Development server
 
