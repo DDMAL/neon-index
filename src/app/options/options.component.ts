@@ -149,30 +149,38 @@ export class OptionsComponent implements OnInit {
         window.location.href = `./editor.html?${params}`;
         // Delete Page
       case "deleteDocument3_5":
-        this.deleteLoading = true;
         selection = this['formGroup3_5'].controls.selection.value;
-        console.log(selection);
         if (typeof selection !== 'undefined' || selection !== null) {
-          deleteEntry(selection).then( _ => {
-            window.location.reload();
-          }).catch(err => {
-            console.error(err);
-          });
+          let isConfirmDelete = window.confirm(`Are you sure you want to delete ${selection}?`);
+          // if user confirms, delete document
+          if (isConfirmDelete) {
+            this.deleteLoading = true;
+            deleteEntry(selection).then( _ => {
+              window.location.reload();
+            }).catch(err => {
+              console.error(err);
+            });
+          }
         }
         else {
           window.confirm(`${selection} could not be deleted! Continue to reload page.`);
         }
         break;
-        // Delete Manuscript
+        // Delete Manuscript (identical to deleting Page)
       case "deleteDocument3_6":
         this.deleteLoading = true;
         selection = this['formGroup3_6'].controls.selection.value;
         if (typeof selection !== 'undefined' || selection !== null) {
-          deleteEntry(selection).then( _ => {
-            window.location.reload();
-          }).catch(err => {
-            console.error(err);
-          });
+          let isConfirmDelete = window.confirm(`Are you sure you want to delete ${selection}?`);
+          // if user confirms, delete document
+          if (isConfirmDelete) {
+            this.deleteLoading = true;
+            deleteEntry(selection).then( _ => {
+              window.location.reload();
+            }).catch(err => {
+              console.error(err);
+            });
+          }
         }
         else {
           window.confirm(`${selection} could not be deleted! Continue to reload page.`);
