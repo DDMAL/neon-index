@@ -151,7 +151,7 @@ export class OptionsComponent implements OnInit {
       // Delete Page
       case "deleteDocument3_5":
         selection = this['formGroup3_5'].controls.selection.value;
-        isConfirmDelete = window.confirm(`This action is irreversible! Continue with deleting ${selection}?`);
+        isConfirmDelete = window.confirm(`This action is irreversible! Are you sure you want to delete ${selection}?`);
         // if user confirms, delete document
         if (isConfirmDelete) {
           this.deleteLoading = true;
@@ -165,7 +165,7 @@ export class OptionsComponent implements OnInit {
       // Delete Manuscript
       case "deleteDocument3_6":
         selection = this['formGroup3_6'].controls.selection.value;
-        isConfirmDelete = window.confirm(`This action is irreversible! Continue with deleting ${selection}?`);
+        isConfirmDelete = window.confirm(`This action is irreversible! Are you sure you want to delete ${selection}?`);
         // if user confirms, delete document
         if (isConfirmDelete) {
           this.deleteLoading = true;
